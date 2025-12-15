@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LIGHT OF THE WORLD - Login</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Light of the World</h1>
+    <p class="subtitle">"Let your light shine"</p>
+
+    <form class="login_form" onsubmit="validateLogin(event)">
+        <label for="username">Username</label>
+        <input type="text" id="username" required>
+
+        <label for="password">Password</label>
+        <div class="password-box">
+            <input type="password" id="password" required>
+            <span onclick="togglePassword()" style="cursor: pointer;">👁️‍🗨️</span>
+        </div>
+
+        <p id="error" style="color: red;"></p>
+
+        <div class="forgot">
+            <a href="#">Forgot password?</a>
+        </div>
+
+        <button type="submit">Login</button>
+    </form>
+
+    <div class="forgot">
+        Don’t have an account? <a href="#">Register</a>
+    </div>
+
+    <div class="button">
+        <a href="homepage.html">Back</a>
+    </div>
+
+    <div class="demo-credentials">
+        <p><strong>Demo Login Credentials</strong></p>
+        <p>Username: <span>lightuser</span></p>
+        <p>Password: <span>letitsh1ne</span></p>
+    </div>
+</div>
+
+<script>
+function togglePassword() {
+    const psw = document.getElementById("password");
+    psw.type = psw.type === "password" ? "text" : "password";
+}
+
+function validateLogin(event) {
+    event.preventDefault();
+
+    const user = document.getElementById("username").value.trim();
+    const pass = document.getElementById("password").value.trim();
+    const error = document.getElementById("error");
+
+    const demoUser = "lightuser";
+    const demoPass = "letitsh1ne";
+
+    if (user === "" || pass === "") {
+        error.textContent = "Please fill in all fields.";
+        return;
+    }
+
+    if (user === demoUser && pass === demoPass) {
+        error.textContent = "";
+        alert("Login successful!");
+        window.location.href = "mainpage.html";
+    } else {
+        error.textContent = "Invalid username or password.";
+    }
+}
+</script>
+
+</body>
+</html>
